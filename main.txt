@@ -1,10 +1,2 @@
-user 1
-
-user2
-
-user3
-
-user4
-
-dupond
-
+Dupond;Dupond;score0;
+user1;pw1;score0;
