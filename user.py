@@ -43,8 +43,12 @@ def login(users):
     for user in users:
         if user[0] == username:
             password = input("Entrez votre mot de passe :\n")
+            while user[1] != password :
+                print("Mot de passe invalide ! Veuillez réessayer")
+                password = input("Entrez votre mot de passe :\n")
             if user[1] == password:
                 return user
+                
 
     
 
