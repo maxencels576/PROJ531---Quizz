@@ -15,7 +15,8 @@ def main():
         choix = input("Votre choix : ")
 
         if choix == "1":
-            create_user(users)
+            users.append(create_user(users))
+
             save_user(users)
 
         elif choix == "2":
