@@ -2,12 +2,11 @@ from random import randint
 from tkinter import *
 
 class question():
-    def __init__(self,quest,nb_rep,lst_rep,correction,point):
+    def __init__(self,quest,nb_rep,lst_rep,correction):
         self.quest = quest 
         self.nb_rep = nb_rep
         self.lst_rep = lst_rep
         self.correction = correction
-        self.point = point
 
 quest1 = "1+1 ?"
 nb_rep1 = 3
@@ -51,7 +50,7 @@ def quizz(nb_question,lst_quest):
 
         if int(input("entrez le numéro de la proposition "))-1 == randq.correction:
             print("bravo ! C'était la bonne réponse")
-            score += randq.point
+            score += 1
         else:
             print("oh non la bonne réponse était " + randq.lst_rep[randq.correction])
     
@@ -88,10 +87,12 @@ def quizz(nb_question,lst_quest):
 
 """
 #gestion d'un fichier texte
-with open('exemple.txt', 'w') as fichier:
+with open('exemple.txt', 'a') as fichier:
     fichier.write("premiere ligne.\n")
     fichier.write("deuxième ligne.\n")
 """
+
+
 
 
 
