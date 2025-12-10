@@ -141,3 +141,52 @@ def run_quiz(quiz):
 
     print(f"=== Score final : {score}/{len(quiz.questions)} ===\n")
     return score
+
+def exemple_utilisation():
+
+    print("\n=== Création d'un quiz ===")
+
+    # 1. Créer un quiz
+    quiz = Quiz("culture_generale")
+
+    # 2. Ajouter des questions
+    q1 = Question(
+        quest="Quelle est la capitale de la France ?",
+        choix=["Lyon", "Paris", "Marseille", "Toulouse"],
+        rep=1
+    )
+
+    q2 = Question(
+        quest="Combien font 2 + 2 ?",
+        choix=["3", "4", "22", "5"],
+        rep=1
+    )
+
+    quiz.add_question(q1)
+    quiz.add_question(q2)
+
+    # 3. Sauvegarder le quiz en TXT
+    save_quiz_txt(quiz)
+
+
+
+    print("\n=== Liste des quiz disponibles ===")
+    print(list_quizzes_txt())   # montre les quiz dans le dossier
+
+
+
+    print("\n=== Chargement du quiz ===")
+    quiz_charge = load_quiz_txt("culture_generale")
+    print(quiz_charge)
+
+
+
+    print("\n=== Exécution du quiz ===")
+    score = run_quiz(quiz_charge)
+    print(f"Score obtenu : {score}")
+
+
+
+
+if __name__ == "__main__":
+    exemple_utilisation()
