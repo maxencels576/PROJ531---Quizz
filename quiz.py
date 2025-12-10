@@ -33,8 +33,7 @@ class Quiz:
 
 def get_quiz_folder():
     folder = "quizzes"
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+    os.makedirs(folder, exist_ok=True)  # crée le dossier si nécessaire
     return folder
 
 def save_quiz_txt(quiz):
