@@ -75,7 +75,6 @@ def lancer_quiz(user):
     for i, quiz_name in enumerate(quizzes):
         print(f"{i+1}. {quiz_name}")
 
-    print(quizzes)
     choix = input("Choisissez un quiz : ")
 
     try:
