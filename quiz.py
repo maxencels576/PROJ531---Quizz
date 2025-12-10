@@ -65,7 +65,7 @@ def load_quiz_txt(name):
     """
 
     folder = get_quiz_folder()
-    filename = os.path.join(folder, f"{quiz.name}.txt")
+    filename = os.path.join(folder, f"{name}.txt")
 
     if not os.path.exists(filename):
         raise FileNotFoundError(f"Le quiz '{name}.txt' n'existe pas.")
@@ -102,12 +102,14 @@ def list_quizzes_txt():
     """
     folder = get_quiz_folder()
     quizzes = []
-    
-    for f in os.listdir():
-        if f.endswith(".txt"):
-            quizzes.append(f[:-4])  # enlève .txt
+
+    for file in os.listdir(folder):
+        if file.endswith(".txt"):
+            quizzes.append(file[:-4])  # retire .txt
 
     return quizzes
+
+    
 
 
 
