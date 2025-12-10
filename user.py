@@ -40,7 +40,11 @@ def create_user(users):
     return user
 
 def login(users):
-    pass
+    username = input("Donner un nom valide :\n")
+    #if username in users:
+        #password = input("Donner un mot de passe valide :\n")
+            #if username[password] == password:
+    return username
 
     
 

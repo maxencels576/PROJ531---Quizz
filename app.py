@@ -21,9 +21,9 @@ def main():
 
         elif choix == "2":
             user = login(users)
-            if user:
-                print(f"\nBienvenue {user.username} !")
-                menu_utilisateur(user, users)
+            print(f"\nBienvenue {user} !")
+            menu_utilisateur(user, users)
+            
 
         elif choix == "3":
             print("Au revoir !")
