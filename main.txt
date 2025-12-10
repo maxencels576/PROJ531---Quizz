@@ -1,1 +1,2 @@
-Dupond;Dupond;score0
+Dupond;Dupond;score0;
+user1;pw1;score0;
