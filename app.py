@@ -21,7 +21,7 @@ def main():
 
         elif choix == "2":
             user = login(users)
-            print(f"\nBienvenue {user} !")
+            print(f"\nBienvenue {user[0]} !")
             menu_utilisateur(user, users)
             
 
@@ -48,11 +48,12 @@ def menu_utilisateur(user, users):
 
         elif choix == "2":
             print("\n--- Vos scores ---")
-            if not user.scores:
+            if user[2] == "score0":
                 print("Aucun score enregistré.")
             else:
-                for s in user.scores:
-                    print(f"{s['quiz']} : {s['score']} / {s['total']}")
+                for s in user[2].split("|"):
+                    if s != "score0":
+                        print(s)
 
         elif choix == "3":
             save_user(users)
