@@ -75,6 +75,7 @@ def lancer_quiz(user):
     for i, quiz_name in enumerate(quizzes):
         print(f"{i+1}. {quiz_name}")
 
+    print(quizzes)
     choix = input("Choisissez un quiz : ")
 
     try:
@@ -87,7 +88,7 @@ def lancer_quiz(user):
     quiz = load_quiz_txt(quiz_name)
 
     if quiz:
-        run_quiz(quiz, user)
+        run_quiz(quiz)
     else:
         print("Erreur lors du chargement du quiz.")
 
