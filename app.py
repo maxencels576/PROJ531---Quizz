@@ -1,4 +1,4 @@
-from users import load_users, save_users, create_user, login
+from user import load_users, save_users, create_user, login
 from quiz import load_quiz_txt, list_quizzes_txt, run_quiz
 
 def main():
