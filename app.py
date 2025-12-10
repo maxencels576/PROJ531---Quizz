@@ -1,10 +1,10 @@
-from user import load_users, save_users, create_user, login
+from user import load_user, save_user, create_user, login
 from quiz import load_quiz_txt, list_quizzes_txt, run_quiz
 
 def main():
     print("=== APPLICATION QUIZ ===")
 
-    users = load_users()
+    users = load_user()
 
     while True:
         print("\n--- Menu principal ---")
@@ -16,7 +16,7 @@ def main():
 
         if choix == "1":
             create_user(users)
-            save_users(users)
+            save_user(users)
 
         elif choix == "2":
             user = login(users)
@@ -26,7 +26,7 @@ def main():
 
         elif choix == "3":
             print("Au revoir !")
-            save_users(users)
+            save_user(users)
             break
 
         else:
@@ -54,7 +54,7 @@ def menu_utilisateur(user, users):
                     print(f"{s['quiz']} : {s['score']} / {s['total']}")
 
         elif choix == "3":
-            save_users(users)
+            save_user(users)
             print("Déconnexion...")
             break
 
@@ -64,7 +64,7 @@ def menu_utilisateur(user, users):
 
 def lancer_quiz(user):
     print("\n--- Liste des quiz disponibles ---")
-    quizzes = list_quizzes()
+    quizzes = list_quizzes_txt()
 
     if not quizzes:
         print("Aucun quiz disponible.")
@@ -82,10 +82,10 @@ def lancer_quiz(user):
         print("Choix invalide.")
         return
 
-    quiz = load_quiz(quiz_name)
+    quiz = load_quiz_txt(quiz_name)
 
     if quiz:
-        play_quiz(quiz, user)
+        run_quiz(quiz, user)
     else:
         print("Erreur lors du chargement du quiz.")
 

@@ -27,7 +27,7 @@ def save_user(users):
                 fichier.write(str(user[i])+",")
             fichier.write(str(user[len(user)])+"\n")
 
-def create_user():
+def create_user(users):
     """
     Docstring for create_user
     renvoie un nouvel utilisateur 
