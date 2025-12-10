@@ -31,6 +31,12 @@ class Quiz:
 
 
 
+def get_quiz_folder():
+    folder = "quizzes"
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+    return folder
+
 def save_quiz_txt(quiz):
     """
     Sauvegarde un quiz au format TXT.
@@ -40,7 +46,8 @@ def save_quiz_txt(quiz):
         REP: index
     """
 
-    filename = f"{quiz.name}.txt"
+    folder = get_quiz_folder()
+    filename = os.path.join(folder, f"{quiz.name}.txt")
 
     with open(filename, "w", encoding="utf-8") as f:
         f.write(f"QUIZ: {quiz.name}\n\n")
@@ -58,7 +65,8 @@ def load_quiz_txt(name):
     Charge un quiz .txt et renvoie un objet Quiz.
     """
 
-    filename = f"{name}.txt"
+    folder = get_quiz_folder()
+    filename = os.path.join(folder, f"{quiz.name}.txt")
 
     if not os.path.exists(filename):
         raise FileNotFoundError(f"Le quiz '{name}.txt' n'existe pas.")
@@ -93,6 +101,7 @@ def list_quizzes_txt():
     """
     Liste tous les quiz disponibles dans notre dossier
     """
+    folder = get_quiz_folder()
     quizzes = []
     
     for f in os.listdir():
