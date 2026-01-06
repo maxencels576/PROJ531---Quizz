@@ -30,9 +30,7 @@ Dupond;Dupond;score0;
 ;
 ;
 ;
-<<<<<<< HEAD
 ;
-=======
 ;
 ;
 ;
@@ -66,9 +64,7 @@ Dupond;Dupond;score0;
 ;
 ;
 ;
->>>>>>> refs/remotes/origin/main
 ;
-user1;pw1;score0;
 ;
 ;
 ;
@@ -100,9 +96,7 @@ user1;pw1;score0;
 ;
 ;
 ;
-<<<<<<< HEAD
 ;
-=======
 ;
 ;
 ;
@@ -136,9 +130,7 @@ user1;pw1;score0;
 ;
 ;
 ;
->>>>>>> refs/remotes/origin/main
 ;
-user;mdp;score0;
 ;
 ;
 ;
@@ -148,32 +140,4 @@ user;mdp;score0;
 ;
 ;
 ;
-;
-;
-;
-;
-;
-;
-<<<<<<< HEAD
-;
-=======
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
->>>>>>> refs/remotes/origin/main
-;
-lb;lb;score0;
+maxence;mdpvalide;score0;

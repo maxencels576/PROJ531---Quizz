@@ -111,10 +111,10 @@ def creer_quiz():
         for j in range(nb_rep):
             rep.append(input("Entrer la proposition n°" + str(j+1) + " : "))
 
-        sol = input("Entrer le numéro de la proposition correcte") - 1
+        sol = int(input("Entrer le numéro de la proposition correcte : ") - 1)
         quiz.append(Question(question,rep,sol))
 
-        save_quiz_txt(quiz)
+    save_quiz_txt(quiz)
 
 
 if __name__ == "__main__":
