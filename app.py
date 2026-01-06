@@ -38,7 +38,7 @@ def menu_utilisateur(user, users):
     while True:
         print("\n--- Menu utilisateur ---")
         print("1. Lancer un quiz")
-        print("2. Creer un quiz")
+        print("2. Créer un quiz")
         print("3. Voir mes scores")
         print("4. Se déconnecter")
 
@@ -111,8 +111,8 @@ def creer_quiz():
         for j in range(nb_rep):
             rep.append(input("Entrer la proposition n°" + str(j+1) + " : "))
 
-        sol = int(input("Entrer le numéro de la proposition correcte : ") - 1)
-        quiz.append(Question(question,rep,sol))
+        sol = int(input("Entrer le numéro de la proposition correcte : ")) - 1
+        quiz.add_question(Question(question,rep,sol))
 
     save_quiz_txt(quiz)
 
