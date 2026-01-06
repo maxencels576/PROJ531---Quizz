@@ -23,7 +23,8 @@ def save_user(users):
     with open('main.txt', 'w') as fichier:
         for user in users:
             for ele in user:
-                fichier.write(ele+";")
+                if ele != None:
+                    fichier.write(ele + ";")
             fichier.write("\n")
 
                 
