@@ -36,6 +36,9 @@ def create_user(users):
     renvoie un nouvel utilisateur 
     """
     username = input("Donner un identifiant valide :\n")
+    for user in users :
+        if username == user :
+            print ("Cet identifiant existe déjà ! Veuillez réessayer\n")
     password = input("Donner un mot de passe valide :\n")
     return [username,password,"score0"]
 
@@ -49,6 +52,8 @@ def login(users):
                 password = input("Entrez votre mot de passe :\n")
             if user[1] == password:
                 return user
+    print("Cet identifiant n'existe pas ! Veuillez réessayer\n")
+    return login(users)
                 
 
     

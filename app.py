@@ -16,7 +16,6 @@ def main():
 
         if choix == "1":
             users.append(create_user(users))
-
             save_user(users)
 
         elif choix == "2":
@@ -27,7 +26,6 @@ def main():
 
         elif choix == "3":
             print("Au revoir !")
-            save_user(users)
             break
 
         else:
