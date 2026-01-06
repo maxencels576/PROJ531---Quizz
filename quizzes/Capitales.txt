@@ -1,0 +1,39 @@
+QUESTION : Quelle est la capitale de la France ?
+CHOIX : Lyon | Paris | Marseille
+REP : 1
+
+QUESTION : Quelle ville est une capitale africaine ?
+CHOIX : Belmopan | Nassau | Freetown
+REP : 2
+
+QUESTION : Quelle est la capitale de l'Uruguay ?
+CHOIX : Buenos Aires | Sucre | Montevideo
+REP : 2
+
+QUESTION : Quelle est la capitale de l'Ouganda ?
+CHOIX : Bamako | Kampala | Nassau
+REP : 1
+
+QUESTION : Quelle est la capitale du Canada ?
+CHOIX : Toronto | Montréal | Ottawa
+REP : 2
+
+QUESTION : Quelle est la capitale de l'Islande ?
+CHOIX : Reikjavíc | Reykjavík | Rekjavíck
+REP : 1
+
+QUESTION : Quelle est la capitale de l'Australie ?
+CHOIX : Canberra | Sydney | Wellington
+REP : 0
+
+QUESTION : Quelle est la capitale de la Nouvelle-Zélande ?
+CHOIX : Wellington | Auckland | Queenstown
+REP : 0
+
+QUESTION : Laquelle de ses villes est une capitale ?
+CHOIX : Jakarta | Surabaya | Nusantara
+REP : 2
+
+QUESTION : Quelle est la capitale du Nicaragua ?
+CHOIX : Caracas | Managua | Tegucigalpa
+REP : 1
