@@ -5,7 +5,7 @@ def load_user():
     """
     #gestion d'un fichier texte
     users = []
-    with open('main.txt', 'r') as fichier:
+    with open('Comptes.txt', 'r') as fichier:
         f_users = fichier.readlines()
         for user in f_users:
             ele = user.split(";")
@@ -20,7 +20,7 @@ def save_user(users):
     
     [[name1,password1,...],[name2,...]] ==> text 
     """
-    with open('main.txt', 'w') as fichier:
+    with open('Comptes.txt', 'w') as fichier:
         for user in users:
             for ele in user:
                 if ele != None:

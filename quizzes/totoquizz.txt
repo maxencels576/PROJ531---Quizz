@@ -1,0 +1,6 @@
+QUIZ: totoquizz
+
+QUESTION : 1+1
+CHOIX : 11 | 0
+REP : 1
+

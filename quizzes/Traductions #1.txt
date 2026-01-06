@@ -1,0 +1,14 @@
+QUIZ: Traductions #1
+
+QUESTION : Comment dit-on "saucisse" en portugais ?
+CHOIX : salsiccia | embutido | salsicha
+REP : 2
+
+QUESTION : Quel mot signifie "bouteille" en hongrois ?
+CHOIX : üveg | pohár | kancsó
+REP : 0
+
+QUESTION : En allemand, que signifie "Fass" ?
+CHOIX : Fesse | Crayon | Baril
+REP : 2
+
