@@ -1,5 +1,5 @@
-from user import load_user, save_user, create_user, login
-from quiz import load_quiz_txt, list_quizzes_txt, run_quiz
+from user import *
+from quiz import *
 
 def main():
     print("=== APPLICATION QUIZ ===")
@@ -38,7 +38,7 @@ def menu_utilisateur(user, users):
     while True:
         print("\n--- Menu utilisateur ---")
         print("1. Lancer un quiz")
-        print("2. Creer un quizz")
+        print("2. Creer un quiz")
         print("3. Voir mes scores")
         print("4. Se déconnecter")
 
@@ -48,7 +48,7 @@ def menu_utilisateur(user, users):
             lancer_quiz(user)
 
         elif choix == "2":
-            creer_quizz()
+            creer_quiz()
 
         elif choix == "3":
             print("\n--- Vos scores ---")
@@ -96,7 +96,26 @@ def lancer_quiz(user):
         print("Erreur lors du chargement du quiz.")
 
 def creer_quiz():
-    pass
+    
+    titre = input("Entrer un titre : ")
+
+    nb_quest = input("Entrer le nombre de question : ")
+    nb_rep = input("Entrer le nombre de proposition par question :")
+    quiz = Quiz(titre)
+
+    for i in range(nb_quest):
+
+        question = input("Entrer la question n°" + str(i+1) + " :")
+        rep = []
+
+        for j in range(nb_rep):
+            rep.append(input("Entrer la proposition n°" + str(j+1) + " :"))
+
+        sol = input("Entrer le numéro de la proposition correcte") - 1
+        quiz.append(Question(question,rep,sol))
+
+        save_quiz_txt(quiz)
+
 
 if __name__ == "__main__":
     main()
