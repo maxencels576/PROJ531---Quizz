@@ -89,7 +89,7 @@ def lancer_quiz(user):
     quiz = load_quiz_txt(quiz_name)
 
     if quiz:
-        run_quiz(quiz)
+        user[2] = user [2] + "-" + str(run_quiz(quiz))
     else:
         print("Erreur lors du chargement du quiz.")
 
