@@ -38,8 +38,9 @@ def menu_utilisateur(user, users):
     while True:
         print("\n--- Menu utilisateur ---")
         print("1. Lancer un quiz")
-        print("2. Voir mes scores")
-        print("3. Se déconnecter")
+        print("2. Creer un quizz")
+        print("3. Voir mes scores")
+        print("4. Se déconnecter")
 
         choix = input("Votre choix : ")
 
@@ -47,6 +48,9 @@ def menu_utilisateur(user, users):
             lancer_quiz(user)
 
         elif choix == "2":
+            creer_quizz()
+
+        elif choix == "3":
             print("\n--- Vos scores ---")
             if user[2] == "score0":
                 print("Aucun score enregistré.")
@@ -55,7 +59,7 @@ def menu_utilisateur(user, users):
                     if s != "score0":
                         print(s)
 
-        elif choix == "3":
+        elif choix == "4":
             save_user(users)
             print("Déconnexion...")
             break
@@ -91,6 +95,9 @@ def lancer_quiz(user):
     else:
         print("Erreur lors du chargement du quiz.")
 
+def creer_quiz():
+    pass
 
 if __name__ == "__main__":
     main()
+
