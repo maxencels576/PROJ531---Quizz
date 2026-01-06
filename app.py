@@ -99,7 +99,7 @@ def creer_quiz():
     
     titre = input("Entrer un titre : ")
 
-    nb_quest = int(input("Entrer le nombre de question : "))
+    nb_quest = int(input("Entrer le nombre de questions : "))
     nb_rep = int(input("Entrer le nombre de proposition par question : "))
     quiz = Quiz(titre)
 
