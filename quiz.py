@@ -82,15 +82,15 @@ def load_quiz_txt(name):
     for line in lines:
         line = line.strip()
 
-        if line.startswith("QUESTION:"):
-            quest = line[len("QUESTION:"):].strip()
+        if line.startswith("QUESTION :"):
+            quest = line[len("QUESTION :"):].strip()
 
-        elif line.startswith("CHOIX:"):
-            raw = line[len("CHOIX:"):].strip()
+        elif line.startswith("CHOIX :"):
+            raw = line[len("CHOIX :"):].strip()
             choix = [c.strip() for c in raw.split("|")]
 
-        elif line.startswith("REP:"):
-            rep = int(line[len("REP:"):].strip())
+        elif line.startswith("REP :"):
+            rep = int(line[len("REP :"):].strip())
             quiz.add_question(Question(quest, choix, rep))
 
     return quiz
@@ -186,7 +186,7 @@ def exemple_utilisation():
 
 
     print("\n=== Chargement du quiz ===")
-    quiz_charge = load_quiz_txt("culture_generale")
+    quiz_charge = load_quiz_txt("Culture_generale")
     print(quiz_charge)
 
 
