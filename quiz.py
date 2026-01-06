@@ -129,13 +129,13 @@ def run_quiz(quiz):
 
         # Affichage des choix
         for idx, choice in enumerate(question.choix):
-            print(f"  {idx}. {choice}")
+            print(f"  {idx + 1}. {choice}")
 
         # Lecture sécurisée
         while True:
             try:
                 user = int(input("Votre réponse : "))
-                if 0 <= user < len(question.choix):
+                if 0 <= user - 1 < len(question.choix):
                     break
                 else:
                     print("Indice invalide.")
@@ -143,11 +143,11 @@ def run_quiz(quiz):
                 print("Veuillez entrer un nombre.")
 
         # Vérification
-        if user == question.rep:
+        if user - 1 == question.rep:
             score += 1
             print("✔ Bonne réponse !\n")
         else:
-            print(f"✘ Mauvaise réponse. Bonne réponse : {question.rep}\n")
+            print(f"✘ Mauvaise réponse. Bonne réponse : {question.rep+1}\n")
 
     print(f"=== Score final : {score}/{len(quiz.questions)} ===\n")
     return score

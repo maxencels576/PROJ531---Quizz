@@ -23,7 +23,7 @@ def save_user(users):
     with open('Comptes.txt', 'w') as fichier:
         for user in users:
             for ele in user:
-                if ele != None:
+                if ele != "" and ele != "\n" :
                     fichier.write(ele + ";")
             fichier.write("\n")
 
@@ -50,7 +50,7 @@ def create_user(users):
                 flag = False
         
     password = input("Donner un mot de passe valide :\n")
-    return [username,password,"score0"]
+    return [username,password,"Scores : "]
 
 def login(users):
     username = input("Entrez votre identifiant :\n")
