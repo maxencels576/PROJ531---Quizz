@@ -99,17 +99,17 @@ def creer_quiz():
     
     titre = input("Entrer un titre : ")
 
-    nb_quest = input("Entrer le nombre de question : ")
-    nb_rep = input("Entrer le nombre de proposition par question :")
+    nb_quest = int(input("Entrer le nombre de question : "))
+    nb_rep = int(input("Entrer le nombre de proposition par question : "))
     quiz = Quiz(titre)
 
     for i in range(nb_quest):
 
-        question = input("Entrer la question n°" + str(i+1) + " :")
+        question = input("Entrer la question n°" + str(i+1) + " : ")
         rep = []
 
         for j in range(nb_rep):
-            rep.append(input("Entrer la proposition n°" + str(j+1) + " :"))
+            rep.append(input("Entrer la proposition n°" + str(j+1) + " : "))
 
         sol = input("Entrer le numéro de la proposition correcte") - 1
         quiz.append(Question(question,rep,sol))
