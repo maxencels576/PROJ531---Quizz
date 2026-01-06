@@ -40,9 +40,9 @@ def save_quiz_txt(quiz):
     """
     Sauvegarde un quiz au format TXT.
     Format :
-        QUESTION: ...
-        CHOIX: a | b | c
-        REP: index
+        QUESTION : ...
+        CHOIX : a | b | c
+        REP : index
     """
 
     folder = get_quiz_folder()
@@ -52,9 +52,9 @@ def save_quiz_txt(quiz):
         f.write(f"QUIZ: {quiz.name}\n\n")
 
         for q in quiz.questions:
-            f.write(f"QUESTION: {q.quest}\n")
-            f.write("CHOIX: " + " | ".join(q.choix) + "\n")
-            f.write(f"REP: {q.rep}\n\n")
+            f.write(f"QUESTION : {q.quest}\n")
+            f.write("CHOIX : " + " | ".join(q.choix) + "\n")
+            f.write(f"REP : {q.rep}\n\n")
 
     print(f"[OK] Quiz '{quiz.name}' sauvegardé en TXT.")
 
@@ -157,7 +157,7 @@ def exemple_utilisation():
     print("\n=== Création d'un quiz ===")
 
     # 1. Créer un quiz
-    quiz = Quiz("culture_generale")
+    quiz = Quiz("Culture_generale")
 
     # 2. Ajouter des questions
     q1 = Question(
