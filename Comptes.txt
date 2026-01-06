@@ -1,11 +1,3 @@
 maxence;mdpvalide;score0;
 ;
-;
-;
-;
-;
-;
-;
-maxence;mdpvalide;score0;
-;
-maxence;mdp;score0;
+marie;mdp;score0;
