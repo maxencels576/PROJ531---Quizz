@@ -106,7 +106,7 @@ def ecran_login():
 
     Button(fenetre, text="Se connecter", command=connexion).pack(pady=10)
     Button(fenetre, text="Retour", command=ecran_begining).pack()
-    Button(fenetre, text="Quitter", command=fenetre.quit).pack()
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
 
 # Menu utilisateur
