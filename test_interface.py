@@ -1,166 +1,84 @@
-from user import *
-from quiz import *
-from random import randint
 from tkinter import *
 from tkinter.messagebox import showinfo, showerror
 
-def clean():
-    for widget in fenetre.winfo_children():
-        widget.destroy()
-        
+# IMPORTS DE TES PROGRAMMES
+from user import * # load_user, save_user
+from quiz import * # load_quiz_txt, list_quizzes_txt
+from quiz import * # run_quiz   # la fonction Tkinter créée avant
+
+
+# Variables globales
+
 users = load_user()
 current_user = None
+
+
+# Fenêtre principale
 
 fenetre = Tk()
 fenetre.title("Application Quiz")
 fenetre.geometry("400x300")
 
-def main():
-    
-    ecran_accueil()
-    
-    
-    
-    fenetre.mainloop()
-    
-    print("=== APPLICATION QUIZ ===")
 
-    users = load_user()
+# ÉCRANS
 
-    while True:
-        print("\n--- Menu principal ---")
-        print("1. Créer un compte")
-        print("2. Se connecter")
-        print("3. Quitter")
+def clear():
+    for widget in fenetre.winfo_children():
+        widget.destroy()
 
-        choix = input("Votre choix : ")
+# Ecran d'accueil
+def ecran_begining():
+    clear()
+    label = Label(fenetre, text="\n").pack()
+    label = Label(fenetre, text="Mintarra's Quizz", font=("Arial", 30), bg="turquoise").pack()
+    label = Label(fenetre, text="\n").pack()
 
-        if choix == "1":
-            users.append(create_user(users))
-            save_user(users)
+    Button(fenetre, text="J'ai déjà un compte", command=ecran_login).pack()
+    Button(fenetre, text="Je suis un nouvel utilisateur", command=ecran_create).pack()
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
-        elif choix == "2":
-            user = login(users)
-            print(f"\nBienvenue {user[0]} !")
-            menu_utilisateur(user, users)
-            
+# Ecran création de compte
+def ecran_create():
+    clear()
 
-        elif choix == "3":
-            print("Au revoir !")
-            break
+    Label(fenetre, text="Créer un compte", font=("Arial", 14)).pack(pady=10)
 
-        else:
-            print("Choix invalide.")
-        
-        
+    Label(fenetre, text="Identifiant").pack()
+    entry_user = Entry(fenetre)
+    entry_user.pack()
 
+    Label(fenetre, text="Mot de passe").pack()
+    entry_pass = Entry(fenetre, show="*")
+    entry_pass.pack()
 
-def menu_utilisateur(user, users):
-    while True:
-        print("\n--- Menu utilisateur ---")
-        print("1. Lancer un quiz")
-        print("2. Créer un quiz")
-        print("3. Voir mes scores")
-        print("4. Se déconnecter")
+    def creer():
+        username = entry_user.get().strip()
+        password = entry_pass.get().strip()
 
-        choix = input("Votre choix : ")
+        if not username or not password:
+            showerror("Erreur", "Champs obligatoires")
+            return
 
-        if choix == "1":
-            lancer_quiz(user)
-            save_user(user)
+        # Vérifier si l'utilisateur existe déjà
+        for user in users:
+            if user[0] == username:
+                showerror("Erreur", "Identifiant déjà utilisé")
+                return
 
-        elif choix == "2":
-            creer_quiz()
+        # Créer l'utilisateur
+        users.append([username, password, "Scores : "])
+        save_user(users)
 
-        elif choix == "3":
-            print("\n--- Vos scores ---")
-            if user[2] == "Scores : ":
-                print("Aucun score enregistré.")
-            else:
-                for s in user[2].split("|"):
-                    if s != "Scores : ":
-                        print(s)
+        showinfo("Succès", "Compte créé avec succès")
+        ecran_login()
 
-        elif choix == "4":
-            save_user(users)
-            print("Déconnexion...")
-            break
+    Button(fenetre, text="Créer", command=creer).pack(pady=10)
+    Button(fenetre, text="Retour", command=ecran_begining).pack()
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
-        else:
-            print("Choix invalide.")
-
-
-def lancer_quiz(user):
-    print("\n--- Liste des quiz disponibles ---")
-    quizzes = list_quizzes_txt()
-
-    if not quizzes:
-        print("Aucun quiz disponible.")
-        return
-
-    for i, quiz_name in enumerate(quizzes):
-        print(f"{i+1}. {quiz_name}")
-
-    choix = input("Choisissez un quiz : ")
-
-    try:
-        choix = int(choix) - 1
-        quiz_name = quizzes[choix]
-    except:
-        print("Choix invalide.")
-        return
-
-    quiz = load_quiz_txt(quiz_name)
-
-    if quiz:
-        user[2] = user[2] + quiz_name + " : " + str(run_quiz(quiz)) + "/" + str(len(quiz.questions)) + " - "
-    else:
-        print("Erreur lors du chargement du quiz.")
-
-def creer_quiz():
-    
-    titre = input("Entrer un titre : ")
-
-    nb_quest = int(input("Entrer le nombre de questions : "))
-    nb_rep = int(input("Entrer le nombre de proposition par question : "))
-    quiz = Quiz(titre)
-
-    for i in range(nb_quest):
-
-        question = input("Entrer la question n°" + str(i+1) + " : ")
-        rep = []
-
-        for j in range(nb_rep):
-            rep.append(input("Entrer la proposition n°" + str(j+1) + " : "))
-
-        sol = int(input("Entrer le numéro de la proposition correcte : ")) - 1
-        quiz.add_question(Question(question,rep,sol))
-
-    save_quiz_txt(quiz)
-
-def ecran_accueil():
-    label = Label(fenetre, text="Mintarra's Quizz", font=("Arial", 30), bg="turquoise")
-    label1 = Label(fenetre, text="\n\n\nMenu principal\n", font=("Arial", 20))
-    label2 = Label(fenetre, text="\n1. Créer un compte\n\n2. Se connecter\n\n3. Quitter")
-    label.pack()
-    label1.pack()
-    label2.pack()
-    
-    # bouton
-    Button(fenetre, text="1. Créer un compte", command = ecran_login).pack()
-    Button(fenetre, text="2. Se connecter", command = ecran_login).pack()
-    Button(fenetre, text="3. Quitter", command = fenetre.quit()).pack()
-
-    # Label(fenetre, text="Identifiant").pack()
-    # entry_user = Entry(fenetre)
-    # entry_user.pack()
-
-    # Label(fenetre, text="Mot de passe").pack()
-    # entry_pass = Entry(fenetre, show="*")
-    # entry_pass.pack()
-
+# Écran connexion
 def ecran_login():
-    clean()
+    clear()
 
     Label(fenetre, text="Connexion", font=("Arial", 14)).pack(pady=10)
 
@@ -187,8 +105,135 @@ def ecran_login():
         showerror("Erreur", "Identifiant ou mot de passe incorrect")
 
     Button(fenetre, text="Se connecter", command=connexion).pack(pady=10)
-    # Button(fenetre, text="Quitter", command=fenetre.quit).pack()
+    Button(fenetre, text="Retour", command=ecran_begining).pack()
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
+
+# Création d'un Quiz
+def ecran_create_quiz():
+    clear()
     
-if __name__ == "__main__":
-    main()
+    Label(fenetre, text="Bienvenue dans le menu pour la création de quiz", font=("Arial", 14)).pack(pady=10)
     
+    Label(fenetre, text="Quel nom voulez-vous donner à votre quiz ?").pack()
+    entry_title = Entry(fenetre)
+    entry_title.pack()
+    
+    Label(fenetre, text="Combien de questions voulez-vous ?").pack()
+    entry_nbq = Entry(fenetre)
+    entry_nbq.pack()
+
+    Label(fenetre, text="Combien de propositions voulez-vous mettre par question ?").pack()
+    entry_nbp = Entry(fenetre)
+    entry_nbp.pack()
+    
+    
+
+
+# Menu utilisateur
+def ecran_menu():
+    clear()
+
+    Label(fenetre, text=f"Bienvenue {current_user[0]}", font=("Arial", 14)).pack(pady=10)
+
+    Button(fenetre, text="Lancer un quiz", command=ecran_quiz).pack(pady=5)
+    Button(fenetre, text="Créer un quiz", command=ecran_create_quiz).pack(pady=5)
+    Button(fenetre, text="Voir mes scores", command=voir_scores).pack(pady=5)
+    Button(fenetre, text="Déconnexion", command=logout).pack(pady=5)
+    
+# Liste des quiz
+def ecran_quiz():
+    clear()
+
+    Label(fenetre, text="Choisir un quiz", font=("Arial", 14)).pack(pady=10)
+
+    quizzes = list_quizzes_txt()
+
+    liste = Listbox(fenetre)
+    for q in quizzes:
+        liste.insert(END, q)
+    liste.pack()
+
+    def lancer():
+        selection = liste.curselection()
+        if not selection:
+            showerror("Erreur", "Sélectionnez un quiz")
+            return
+
+        nom = quizzes[selection[0]]
+        quiz = load_quiz_txt(nom)
+
+        score = run_quiz(quiz)
+
+        current_user[2] += f"{nom} : {score}/{len(quiz.questions)} | "
+        save_user(users)
+
+        lancer_quiz(nom)
+
+    Button(fenetre, text="Lancer", command=lancer).pack(pady=10)
+    Button(fenetre, text="Retour", command=ecran_menu).pack()
+
+# Lancer Quiz
+def lancer_quiz(nom):
+    
+    Label(fenetre, text="Liste des quiz disponibles", font=("Arial", 14)).pack(pady=10)
+    quizzes = list_quizzes_txt()
+
+    if not quizzes:
+        print("Aucun quiz disponible.")
+        return
+
+    for i, quiz_name in enumerate(quizzes):
+        print(f"{i+1}. {quiz_name}")
+
+    choix = input("Choisissez un quiz : ")
+
+    try:
+        choix = int(choix) - 1
+        quiz_name = quizzes[choix]
+    except:
+        print("Choix invalide.")
+        return
+
+    quiz = load_quiz_txt(quiz_name)
+
+    if quiz:
+        user[2] = user[2] + quiz_name + " : " + str(run_quiz(quiz)) + "/" + str(len(quiz.questions)) + " -"
+    else:
+        print("Erreur lors du chargement du quiz.")
+    
+    
+
+    # radiobutton
+    value = StringVar() 
+    bouton1 = Radiobutton(fenetre, text="Oui", variable=value, value=1)
+    bouton2 = Radiobutton(fenetre, text="Non", variable=value, value=2)
+    bouton3 = Radiobutton(fenetre, text="Peu être", variable=value, value=3)
+    bouton1.pack()
+    bouton2.pack()
+    bouton3.pack()
+
+# Scores
+def voir_scores():
+    clear()
+
+    Label(fenetre, text="Mes scores", font=("Arial", 14)).pack(pady=10)
+
+    if current_user[2] == "":
+        Label(fenetre, text="Aucun score").pack()
+    else:
+        for s in current_user[2].split("-"):
+            if s.strip():
+                Label(fenetre, text=s + "\n").pack(anchor="w", padx=20)
+
+    Button(fenetre, text="Retour", command=ecran_menu).pack(pady=10)
+
+# -----------------------
+def logout():
+    global current_user
+    current_user = None
+    save_user(users)
+    ecran_login()
+
+# -----------------------
+ecran_begining()
+fenetre.mainloop()
