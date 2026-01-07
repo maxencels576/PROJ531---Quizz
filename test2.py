@@ -66,7 +66,7 @@ def ecran_create():
                 return
 
         # Créer l'utilisateur
-        users.append([username, password, "Scores : "])
+        users.append([username, password, ""])
         save_user(users)
 
         showinfo("Succès", "Compte créé avec succès")
