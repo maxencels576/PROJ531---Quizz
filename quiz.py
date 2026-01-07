@@ -48,7 +48,7 @@ def save_quiz_txt(quiz):
     folder = get_quiz_folder()
     filename = os.path.join(folder, f"{quiz.name}.txt")
 
-    with open(filename, "w", encoding="utf-8") as f:
+    with open(filename, "a", encoding="utf-8") as f:
         f.write(f"QUIZ: {quiz.name}\n\n")
 
         for q in quiz.questions:
