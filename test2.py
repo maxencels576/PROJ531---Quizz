@@ -31,10 +31,12 @@ def ecran_begining():
     clear()
     label = Label(fenetre, text="\n").pack()
     label = Label(fenetre, text="Mintarra's Quizz", font=("Arial", 30), bg="turquoise").pack()
-    label = Label(fenetre, text="\n").pack()
+    label = Label(fenetre, text="\n\n\n").pack()
 
     Button(fenetre, text="J'ai déjà un compte", command=ecran_login).pack()
+    label = Label(fenetre, text="\n").pack()
     Button(fenetre, text="Je suis un nouvel utilisateur", command=ecran_create).pack()
+    label = Label(fenetre, text="\n").pack()
     Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
 # Ecran création de compte
@@ -66,7 +68,7 @@ def ecran_create():
                 return
 
         # Créer l'utilisateur
-        users.append([username, password, "Scores : "])
+        users.append([username, password, ""])
         save_user(users)
 
         showinfo("Succès", "Compte créé avec succès")
@@ -126,7 +128,7 @@ def ecran_create_quiz():
     entry_nbp = Entry(fenetre)
     entry_nbp.pack()
     
-    
+    quiz = Quiz(entry_title)
 
 
 # Menu utilisateur
