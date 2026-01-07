@@ -101,7 +101,7 @@ with open('exemple.txt', 'a') as fichier:
 
 
 
-
+"""
 #fonctionnement tkinter
 
 fenetre = Tk()
@@ -194,10 +194,231 @@ menubar.add_cascade(label="Aide", menu=menu3)
 
 fenetre.config(menu=menubar)
 
+
+
+
 # bouton de sortie
-bouton=Button(fenetre, text="Fermer", command=fenetre.quit)
+def afficher_selection():
+    selection = liste.get(liste.curselection())# Récupère l'élément sélectionné
+    print("Élément sélectionné :", selection)
+
+
+bouton=Button(fenetre, text="affiche", command=afficher_selection)
 bouton.pack()
+
 
 
 fenetre.mainloop()
 
+"""
+
+"""
+
+#get() permet de récupérer la valeur associée à cet indice.
+
+import tkinter as tk
+# Création de la fenêtre principale
+root = tk.Tk()
+root.title("Exemple de Listbox")
+# Création d'une Listbox
+liste = tk.Listbox(root)
+liste.pack()
+# Création d'une liste d'éléments à ajouter
+elements = ["Python", "Java", "C++", "JavaScript"]
+# Ajout des éléments à la Listbox
+for element in elements:
+    liste.insert(tk.END, element)
+def afficher_selection():
+    selection = liste.get(liste.curselection())# Récupère l'élément sélectionné
+    print("Élément sélectionné :", selection)
+# Création d'un bouton pour afficher la sélection
+btn_afficher = tk.Button(root,text="Afficher sélection",command=afficher_selection)
+btn_afficher.pack()
+root.mainloop()
+"""
+
+
+from tkinter import *
+from tkinter.messagebox import showinfo, showerror
+
+# IMPORTS DE TES PROGRAMMES
+from user import load_user, save_user
+from quiz import load_quiz_txt, list_quizzes_txt
+from quiz import run_quiz   # la fonction Tkinter créée avant
+
+
+# Variables globales
+
+users = load_user()
+current_user = None
+
+
+# Fenêtre principale
+
+fenetre = Tk()
+fenetre.title("Application Quiz")
+fenetre.geometry("400x300")
+
+
+# ÉCRANS
+
+def clear():
+    for widget in fenetre.winfo_children():
+        widget.destroy()
+
+# Ecran d'accueil
+def ecran_begining():
+    clear()
+    label = Label(fenetre, text="\n").pack()
+    label = Label(fenetre, text="Mintarra's Quizz", font=("Arial", 30), bg="turquoise").pack()
+    label = Label(fenetre, text="\n").pack()
+
+    Button(fenetre, text="J'ai déjà un compte", command=ecran_login).pack()
+    Button(fenetre, text="Je suis un nouvel utilisateur", command=ecran_create).pack()
+
+
+# Ecran création de compte
+def ecran_create():
+    clear()
+
+    Label(fenetre, text="Créer un compte", font=("Arial", 14)).pack(pady=10)
+
+    Label(fenetre, text="Identifiant").pack()
+    entry_user = Entry(fenetre)
+    entry_user.pack()
+
+    Label(fenetre, text="Mot de passe").pack()
+    entry_pass = Entry(fenetre, show="*")
+    entry_pass.pack()
+
+    def creer():
+        username = entry_user.get().strip()
+        password = entry_pass.get().strip()
+
+        if not username or not password:
+            showerror("Erreur", "Champs obligatoires")
+            return
+
+        # Vérifier si l'utilisateur existe déjà
+        for user in users:
+            if user[0] == username:
+                showerror("Erreur", "Identifiant déjà utilisé")
+                return
+
+        # Créer l'utilisateur
+        users.append([username, password, "Scores : "])
+        save_user(users)
+
+        showinfo("Succès", "Compte créé avec succès")
+        ecran_login()
+
+    Button(fenetre, text="Créer", command=creer).pack(pady=10)
+    Button(fenetre, text="Retour", command=ecran_begining).pack()
+
+
+# Écran connexion
+def ecran_login():
+    clear()
+
+    Label(fenetre, text="Connexion", font=("Arial", 14)).pack(pady=10)
+
+    Label(fenetre, text="Identifiant").pack()
+    entry_user = Entry(fenetre)
+    entry_user.pack()
+
+    Label(fenetre, text="Mot de passe").pack()
+    entry_pass = Entry(fenetre, show="*")
+    entry_pass.pack()
+
+    def connexion():
+        global current_user
+
+        username = entry_user.get()
+        password = entry_pass.get()
+
+        for user in users:
+            if user[0] == username and user[1] == password:
+                current_user = user
+                ecran_menu()
+                return
+
+        showerror("Erreur", "Identifiant ou mot de passe incorrect")
+
+    Button(fenetre, text="Se connecter", command=connexion).pack(pady=10)
+    Button(fenetre, text="Retour", command=ecran_begining).pack()
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
+
+
+# Menu utilisateur
+def ecran_menu():
+    clear()
+
+    Label(
+        fenetre,
+        text=f"Bienvenue {current_user[0]}",
+        font=("Arial", 14)
+    ).pack(pady=10)
+
+    Button(fenetre, text="Lancer un quiz", command=ecran_quiz).pack(pady=5)
+    Button(fenetre, text="Voir mes scores", command=voir_scores).pack(pady=5)
+    Button(fenetre, text="Déconnexion", command=logout).pack(pady=5)
+
+
+# Liste des quiz
+def ecran_quiz():
+    clear()
+
+    Label(fenetre, text="Choisir un quiz", font=("Arial", 14)).pack(pady=10)
+
+    quizzes = list_quizzes_txt()
+
+    liste = Listbox(fenetre)
+    for q in quizzes:
+        liste.insert(END, q)
+    liste.pack()
+
+    def lancer():
+        selection = liste.curselection()
+        if not selection:
+            showerror("Erreur", "Sélectionnez un quiz")
+            return
+
+        nom = quizzes[selection[0]]
+        quiz = load_quiz_txt(nom)
+
+        score = run_quiz(quiz)
+
+        current_user[2] += f"{nom} : {score}/{len(quiz.questions)} | "
+        save_user(users)
+
+        ecran_menu()
+
+    Button(fenetre, text="Lancer", command=lancer).pack(pady=10)
+    Button(fenetre, text="Retour", command=ecran_menu).pack()
+
+
+# Scores
+def voir_scores():
+    clear()
+
+    Label(fenetre, text="Mes scores", font=("Arial", 14)).pack(pady=10)
+
+    if current_user[2] == "Scores : ":
+        Label(fenetre, text="Aucun score").pack()
+    else:
+        for s in current_user[2].split("|"):
+            if s.strip():
+                Label(fenetre, text=s).pack(anchor="w", padx=20)
+
+    Button(fenetre, text="Retour", command=ecran_menu).pack(pady=10)
+
+# -----------------------
+def logout():
+    global current_user
+    current_user = None
+    save_user(users)
+    ecran_login()
+
+# -----------------------
+ecran_begining()
+fenetre.mainloop()
