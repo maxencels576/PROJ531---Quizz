@@ -1,0 +1,14 @@
+QUIZ: nouveau quiz
+
+QUESTION : quelle est la kapitale ?
+CHOIX : paris | mulhouse | chambefrein | annecy
+REP : 3
+
+QUESTION : qui Est JH ?
+CHOIX : trez | vice-prez | RR | respo Rien
+REP : 1
+
+QUESTION : QUE FAIT pmb ?
+CHOIX : pLEIN de mERVEILLEUSES bOULES | ouais | jsp je suis à l'X | du ski
+REP : 3
+
