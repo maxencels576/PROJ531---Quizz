@@ -19,9 +19,7 @@ def main():
     
     ecran_accueil()
     
-    # bouton
-    bouton=Button(fenetre, text="1. Créer un compte", command = ecran_login())
-    bouton.pack()
+    #Button(fenetre, text="1. Créer un compte", command = ecran_login())
     
     fenetre.mainloop()
     
@@ -141,7 +139,15 @@ def creer_quiz():
     save_quiz_txt(quiz)
 
 def ecran_accueil():
-    Label(fenetre, text="OUais", font=("Arial", 14)).pack(pady=10)
+    label = Label(fenetre, text="Mintarra's Quizz", font=("Arial", 30), bg="turquoise")
+    label1 = Label(fenetre, text="\n\n\nMenu principal\n", font=("Arial", 20))
+    label2 = Label(fenetre, text="\n1. Créer un compte\n\n2. Se connecter\n\n3. Quitter")
+    label.pack()
+    label1.pack()
+    label2.pack()
+    # bouton
+    
+    
 
     # Label(fenetre, text="Identifiant").pack()
     # entry_user = Entry(fenetre)
@@ -155,13 +161,6 @@ def ecran_login():
     clean()
 
     Label(fenetre, text="Connexion", font=("Arial", 14)).pack(pady=10)
-    
-    label = Label(fenetre, text="APPLICATION QUIZ", font=("Arial", 30), bg="turquoise")
-    label1 = Label(fenetre, text="\n\n\nMenu principal\n", font=("Arial", 20))
-    label2 = Label(fenetre, text="\n1. Créer un compte\n\n2. Se connecter\n\n3. Quitter")
-    label.pack()
-    label1.pack()
-    label2.pack()
 
     Label(fenetre, text="Identifiant").pack()
     entry_user = Entry(fenetre)
@@ -186,7 +185,8 @@ def ecran_login():
         showerror("Erreur", "Identifiant ou mot de passe incorrect")
 
     Button(fenetre, text="Se connecter", command=connexion).pack(pady=10)
-    Button(fenetre, text="Quitter", command=fenetre.quit).pack()
+    # Button(fenetre, text="Quitter", command=fenetre.quit).pack()
     
 if __name__ == "__main__":
     main()
+    
