@@ -2,21 +2,25 @@ from user import *
 from quiz import *
 from random import randint
 from tkinter import *
+from tkinter.messagebox import showinfo, showerror
+
+def clean():
+    for widget in fenetre.winfo_children():
+        widget.destroy()
+        
+users = load_user()
+current_user = None
+
+fenetre = Tk()
+fenetre.title("Application Quiz")
+fenetre.geometry("400x300")
 
 def main():
     
-    fenetre = Tk()
-    
-    # label
-    label = Label(fenetre, text="APPLICATION QUIZ", font=("Arial", 30), bg="turquoise")
-    label1 = Label(fenetre, text="\n\n\nMenu principal\n", font=("Arial", 20))
-    label2 = Label(fenetre, text="\n1. Créer un compte\n\n2. Se connecter\n\n3. Quitter")
-    label.pack()
-    label1.pack()
-    label2.pack()
+    ecran_accueil()
     
     # bouton
-    bouton=Button(fenetre, text="1. Créer un compte", command = users.append(create_user(users)))
+    bouton=Button(fenetre, text="1. Créer un compte", command = ecran_login())
     bouton.pack()
     
     fenetre.mainloop()
@@ -136,7 +140,53 @@ def creer_quiz():
 
     save_quiz_txt(quiz)
 
+def ecran_accueil():
+    Label(fenetre, text="OUais", font=("Arial", 14)).pack(pady=10)
 
+    # Label(fenetre, text="Identifiant").pack()
+    # entry_user = Entry(fenetre)
+    # entry_user.pack()
+
+    # Label(fenetre, text="Mot de passe").pack()
+    # entry_pass = Entry(fenetre, show="*")
+    # entry_pass.pack()
+
+def ecran_login():
+    clean()
+
+    Label(fenetre, text="Connexion", font=("Arial", 14)).pack(pady=10)
+    
+    label = Label(fenetre, text="APPLICATION QUIZ", font=("Arial", 30), bg="turquoise")
+    label1 = Label(fenetre, text="\n\n\nMenu principal\n", font=("Arial", 20))
+    label2 = Label(fenetre, text="\n1. Créer un compte\n\n2. Se connecter\n\n3. Quitter")
+    label.pack()
+    label1.pack()
+    label2.pack()
+
+    Label(fenetre, text="Identifiant").pack()
+    entry_user = Entry(fenetre)
+    entry_user.pack()
+
+    Label(fenetre, text="Mot de passe").pack()
+    entry_pass = Entry(fenetre, show="*")
+    entry_pass.pack()
+
+    def connexion():
+        global current_user
+
+        username = entry_user.get()
+        password = entry_pass.get()
+
+        for user in users:
+            if user[0] == username and user[1] == password:
+                current_user = user
+                ecran_menu()
+                return
+
+        showerror("Erreur", "Identifiant ou mot de passe incorrect")
+
+    Button(fenetre, text="Se connecter", command=connexion).pack(pady=10)
+    Button(fenetre, text="Quitter", command=fenetre.quit).pack()
+    
 if __name__ == "__main__":
     main()
-
