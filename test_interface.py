@@ -175,7 +175,7 @@ def ecran_quiz():
 # Lancer Quiz
 def lancer_quiz(nom):
     
-    Label(fenetre, text="Liste des quiz disponibles", font=("Arial", 14)).pack(pady=10)
+    Label(fenetre, text=nom, font=("Arial", 14)).pack(pady=10)
     quizzes = list_quizzes_txt()
 
     if not quizzes:
