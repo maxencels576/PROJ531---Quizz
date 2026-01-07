@@ -1,14 +1,6 @@
 import os
-from tkinter import *
-from tkinter.messagebox import showinfo
 
 class Question:
-    """
-    quest (str) : texte de la question
-    choix (list[str]) : choix disponibles
-    rep (int) : index de la bonne réponse
-    """
-
     def __init__(self, quest, choix, rep):
         self.quest = quest
         self.choix = choix
@@ -17,11 +9,6 @@ class Question:
 
 
 class Quiz:
-    """
-    name (str) : nom du quiz
-    questions (list[Question]) : liste des questions
-    """
-
     def __init__(self, name):
         self.name = name
         self.questions = []
@@ -117,8 +104,7 @@ def list_quizzes_txt():
 
 def run_quiz(quiz):
     """
-    Exécute un quiz question par question
-    et renvoie le score final.
+    Exécute un quiz question par question et renvoie le score final.
     """
 
     print(f"\n=== Quiz : {quiz.name} ===\n")
@@ -153,52 +139,3 @@ def run_quiz(quiz):
 
     print(f"=== Score final : {score}/{len(quiz.questions)} ===\n")
     return score
-
-def exemple_utilisation():
-
-    print("\n=== Création d'un quiz ===")
-
-    # 1. Créer un quiz
-    quiz = Quiz("Culture_generale")
-
-    # 2. Ajouter des questions
-    q1 = Question(
-        quest="Quelle est la capitale de la France ?",
-        choix=["Lyon", "Paris", "Marseille", "Toulouse"],
-        rep=1
-    )
-
-    q2 = Question(
-        quest="Combien font 2 + 2 ?",
-        choix=["3", "4", "22", "5"],
-        rep=1
-    )
-
-    quiz.add_question(q1)
-    quiz.add_question(q2)
-
-    # 3. Sauvegarder le quiz en TXT
-    save_quiz_txt(quiz)
-
-
-
-    print("\n=== Liste des quiz disponibles ===")
-    print(list_quizzes_txt())   # montre les quiz dans le dossier
-
-
-
-    print("\n=== Chargement du quiz ===")
-    quiz_charge = load_quiz_txt("Culture_generale")
-    print(quiz_charge)
-
-
-
-    print("\n=== Exécution du quiz ===")
-    score = run_quiz(quiz_charge)
-    print(f"Score obtenu : {score}")
-
-
-
-
-if __name__ == "__main__":
-    exemple_utilisation()
