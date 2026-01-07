@@ -1,6 +1,4 @@
 import os
-from tkinter import *
-from tkinter.messagebox import showinfo
 
 class Question:
     def __init__(self, quest, choix, rep):
