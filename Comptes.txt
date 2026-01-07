@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 c;o;n;s;t;a;n;c;e;
 c;o;n;s;t;a;n;c;e;
 S;c;o;r;e;s; ;:; ;T;r;a;d;u;c;t;i;o;n;s; ;#;1; ;:; ;1;/;3; ;-; ;n;o;u;v;e;a;u; ;q;u;i;z; ;:; ;2;/;3; ;-; ;
+=======
+Maxence;mdp;Scores : ;
+Marie;mdp;Scores : ;
+Léandre;mdp;Scores : ;
+2;Z;Scores : ;
+>>>>>>> 62e8fd851b447299b556242b855673f3ad8d95ce
