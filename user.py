@@ -53,7 +53,7 @@ def create_user(users):
     
     save_user(users)
     
-    return [username,password,"Scores : "]
+    return [username,password,""]
 
 def login(users):
     username = input("Entrez votre identifiant :\n")

@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter.messagebox import showinfo, showerror
 
 # IMPORTS DE TES PROGRAMMES
-from user import load_user, save_user
-from quiz import load_quiz_txt, list_quizzes_txt
-from quiz import run_quiz   # la fonction Tkinter créée avant
+from user import * # load_user, save_user
+from quiz import * # load_quiz_txt, list_quizzes_txt
+from quiz import * # run_quiz   # la fonction Tkinter créée avant
 
 
 # Variables globales
@@ -35,7 +35,7 @@ def ecran_begining():
 
     Button(fenetre, text="J'ai déjà un compte", command=ecran_login).pack()
     Button(fenetre, text="Je suis un nouvel utilisateur", command=ecran_create).pack()
-
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
 # Ecran création de compte
 def ecran_create():
@@ -74,7 +74,7 @@ def ecran_create():
 
     Button(fenetre, text="Créer", command=creer).pack(pady=10)
     Button(fenetre, text="Retour", command=ecran_begining).pack()
-
+    Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
 # Écran connexion
 def ecran_login():
@@ -108,22 +108,38 @@ def ecran_login():
     Button(fenetre, text="Retour", command=ecran_begining).pack()
     Button(fenetre, text="Quitter", command=fenetre.destroy).pack()
 
+# Création d'un Quiz
+def ecran_create_quiz():
+    clear()
+    
+    Label(fenetre, text="Bienvenue dans le menu pour la création de quiz", font=("Arial", 14)).pack(pady=10)
+    
+    Label(fenetre, text="Quel nom voulez-vous donner à votre quiz ?").pack()
+    entry_title = Entry(fenetre)
+    entry_title.pack()
+    
+    Label(fenetre, text="Combien de questions voulez-vous ?").pack()
+    entry_nbq = Entry(fenetre)
+    entry_nbq.pack()
+
+    Label(fenetre, text="Combien de propositions voulez-vous mettre par question ?").pack()
+    entry_nbp = Entry(fenetre)
+    entry_nbp.pack()
+    
+    
+
 
 # Menu utilisateur
 def ecran_menu():
     clear()
 
-    Label(
-        fenetre,
-        text=f"Bienvenue {current_user[0]}",
-        font=("Arial", 14)
-    ).pack(pady=10)
+    Label(fenetre, text=f"Bienvenue {current_user[0]}", font=("Arial", 14)).pack(pady=10)
 
     Button(fenetre, text="Lancer un quiz", command=ecran_quiz).pack(pady=5)
+    Button(fenetre, text="Créer un quiz", command=ecran_create_quiz).pack(pady=5)
     Button(fenetre, text="Voir mes scores", command=voir_scores).pack(pady=5)
     Button(fenetre, text="Déconnexion", command=logout).pack(pady=5)
-
-
+    
 # Liste des quiz
 def ecran_quiz():
     clear()
@@ -163,12 +179,12 @@ def voir_scores():
 
     Label(fenetre, text="Mes scores", font=("Arial", 14)).pack(pady=10)
 
-    if current_user[2] == "Scores : ":
+    if current_user[2] == "":
         Label(fenetre, text="Aucun score").pack()
     else:
-        for s in current_user[2].split("|"):
+        for s in current_user[2].split("-"):
             if s.strip():
-                Label(fenetre, text=s).pack(anchor="w", padx=20)
+                Label(fenetre, text=s + "\n").pack(anchor="w", padx=20)
 
     Button(fenetre, text="Retour", command=ecran_menu).pack(pady=10)
 

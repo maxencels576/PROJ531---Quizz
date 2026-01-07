@@ -51,11 +51,11 @@ def menu_utilisateur(user, users):
 
         elif choix == "3":
             print("\n--- Vos scores ---")
-            if user[2] == "Scores : ":
+            if user[2] == "":
                 print("Aucun score enregistré.")
             else:
                 for s in user[2].split("|"):
-                    if s != "Scores : ":
+                    if s != "":
                         print(s)
 
         elif choix == "4":
@@ -90,7 +90,7 @@ def lancer_quiz(user):
     quiz = load_quiz_txt(quiz_name)
 
     if quiz:
-        user[2] = user[2] + quiz_name + " : " + str(run_quiz(quiz)) + "/" + str(len(quiz.questions)) + " - "
+        user[2] = user[2] + quiz_name + " : " + str(run_quiz(quiz)) + "/" + str(len(quiz.questions)) + " -"
     else:
         print("Erreur lors du chargement du quiz.")
 
