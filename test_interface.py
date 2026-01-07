@@ -19,7 +19,7 @@ def main():
     
     ecran_accueil()
     
-    #Button(fenetre, text="1. Créer un compte", command = ecran_login())
+    
     
     fenetre.mainloop()
     
@@ -145,9 +145,11 @@ def ecran_accueil():
     label.pack()
     label1.pack()
     label2.pack()
+    
     # bouton
-    
-    
+    Button(fenetre, text="1. Créer un compte", command = ecran_login).pack()
+    Button(fenetre, text="2. Se connecter", command = ecran_login).pack()
+    Button(fenetre, text="3. Quitter", command = fenetre.quit()).pack()
 
     # Label(fenetre, text="Identifiant").pack()
     # entry_user = Entry(fenetre)
