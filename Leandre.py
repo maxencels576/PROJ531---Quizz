@@ -1,6 +1,6 @@
 from random import randint
 from tkinter import *
-
+"""
 class question():
     def __init__(self,quest,nb_rep,lst_rep,correction):
         self.quest = quest 
@@ -61,7 +61,7 @@ def quizz(nb_question,lst_quest):
 #quizz(3,[q1,q2,q3])
         
 
-
+"""
 
 
 
@@ -100,9 +100,9 @@ with open('exemple.txt', 'a') as fichier:
 
 
 
-"""
 
-fonctionnement tkinter
+
+#fonctionnement tkinter
 
 fenetre = Tk()
 
@@ -200,4 +200,4 @@ bouton.pack()
 
 
 fenetre.mainloop()
-"""
+

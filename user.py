@@ -50,6 +50,9 @@ def create_user(users):
                 flag = False
         
     password = input("Donner un mot de passe valide :\n")
+    
+    save_user(users)
+    
     return [username,password,"Scores : "]
 
 def login(users):
