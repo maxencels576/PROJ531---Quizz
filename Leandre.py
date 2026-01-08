@@ -100,8 +100,8 @@ with open('exemple.txt', 'a') as fichier:
 
 
 
-
 """
+
 #fonctionnement tkinter
 
 fenetre = Tk()
@@ -209,8 +209,8 @@ bouton.pack()
 
 
 fenetre.mainloop()
-
 """
+
 
 """
 
