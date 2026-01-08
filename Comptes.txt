@@ -1,3 +1,1 @@
-Maxence;mdp;totoquizz : 0/1 -nouveau quiz : 2/3 - : 2/3 -Capitales : 2/10 -totoquizz : 0/1 -totoquizz : 1/1 -;
-Léandre;mdp;totoquizz : 1/1 -;
-Marie;mdp;
+Marie;mdp;nouveau quiz : 0/3 -totoquizz : 1/1 -;

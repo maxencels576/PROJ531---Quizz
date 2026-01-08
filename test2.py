@@ -166,7 +166,7 @@ def ecran_quiz():
 
         score = run_quiz(quiz)
 
-        current_user[2] += f"{nom} : {score}/{len(quiz.questions)} | "
+        current_user[2] += f"{nom} : {score}/{len(quiz.questions)} -"
         save_user(users)
 
         ecran_menu()
@@ -190,13 +190,12 @@ def voir_scores():
 
     Button(fenetre, text="Retour", command=ecran_menu).pack(pady=10)
 
-# -----------------------
+
 def logout():
     global current_user
     current_user = None
     save_user(users)
     ecran_login()
 
-# -----------------------
 ecran_begining()
 fenetre.mainloop()
