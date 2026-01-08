@@ -6,9 +6,8 @@ def load_user():
     #gestion d'un fichier texte
     users = []
     with open('Comptes.txt', 'r') as fichier:
-        f_users = fichier.readlines()
-        for user in f_users:
-            ele = user.split(";")
+        for user in fichier:
+            ele = user.strip().split(";")
             users.append(ele)
     return users
 
